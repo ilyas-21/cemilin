@@ -72,6 +72,22 @@ button{
   border-radius:15px;
 }
 
+.keranjang{
+  background:white;
+  margin:20px;
+  padding:20px;
+  border-radius:15px;
+  box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
+
+.item-keranjang{
+  display:flex;
+  justify-content:space-between;
+  margin-top:10px;
+  padding:10px 0;
+  border-bottom:1px solid #eee;
+}
+
 input,
 select,
 textarea{
