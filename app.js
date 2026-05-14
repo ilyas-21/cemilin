@@ -1,16 +1,44 @@
-async function pesan(){
+javascript
+let menuDipilih = "";
+let hargaDipilih = 0;
 
-try{
+function pesan(menu,harga){
+
+menuDipilih = menu;
+hargaDipilih = harga;
+
+document
+.getElementById("popup")
+.style.display = "block";
+
+}
+
+function tutupPopup(){
+
+document
+.getElementById("popup")
+.style.display = "none";
+
+}
+
+async function kirimPesanan(){
 
 const nama =
-prompt("Masukkan Nama Anda");
-
-if(!nama) return;
+document.getElementById("nama").value;
 
 const lokasi =
-prompt("Lokasi Kampus");
+document.getElementById("lokasi").value;
 
-if(!lokasi) return;
+const catatan =
+document.getElementById("catatan").value;
+
+if(!nama || !lokasi){
+
+alert("Lengkapi data");
+
+return;
+
+}
 
 const kode =
 "CMN-" + Date.now();
@@ -18,32 +46,28 @@ const kode =
 const tanggal =
 new Date().toLocaleString();
 
-const menu =
-"Kebab Premium";
-
-const total = 15000;
-
 const data = {
-  kode,
-  tanggal,
-  nama,
-  lokasi,
-  menu,
-  total
+
+kode: kode,
+tanggal: tanggal,
+nama: nama,
+lokasi: lokasi,
+menu: menuDipilih,
+total: hargaDipilih,
+catatan: catatan
+
 };
 
-const response = await fetch(
-"https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec",
+await fetch(
+"URL_APPS_SCRIPT_ANDA",
 {
-  method: "POST",
-  body: JSON.stringify(data)
+method:"POST",
+body:JSON.stringify(data)
 }
 );
 
-console.log(await response.text());
-
 const pesanWA = `
-PESANAN BARU
+*PESANAN BARU CEMIL.IN*
 
 Kode:
 ${kode}
@@ -52,25 +76,24 @@ Nama:
 ${nama}
 
 Pesanan:
-${menu}
+${menuDipilih}
+
+Catatan:
+${catatan}
 
 Total:
-Rp ${total}
+Rp ${hargaDipilih}
 
 Lokasi:
 ${lokasi}
 `;
 
 window.open(
-`https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
+`https://wa.me/628XXXXXXXXXX?text=${encodeURIComponent(pesanWA)}`
 );
 
-}catch(error){
+tutupPopup();
 
-alert("ERROR: " + error);
-
-console.log(error);
-
-}
+alert("Pesanan berhasil dibuat");
 
 }
