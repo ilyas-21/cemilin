@@ -1,24 +1,110 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1.0">
+
   <title>CEMIL.IN</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>CEMIL.IN</h1>
+<header>
+  <h1>CEMIL.IN</h1>
+  <p>Cemilan favorit warga UM Banjarmasin 😄</p>
+</header>
 
-<div class="card">
-  <img src="https://placehold.co/300x200">
+<div class="container">
 
-  <h2>Kebab Premium</h2>
+  <div class="card">
 
-  <p>Rp 15.000</p>
+    <img
+    src="https://placehold.co/600x400/orange/white?text=KEBAB"
+    >
 
-  <button onclick="pesan()">
-    Pesan
-  </button>
+    <h2>Kebab Premium</h2>
+
+    <p class="harga">
+      Rp 15.000
+    </p>
+
+    <button onclick="pesan('Kebab Premium',15000)">
+      Pesan
+    </button>
+
+  </div>
+
+  <div class="card">
+
+    <img
+    src="https://placehold.co/600x400/red/white?text=MIE"
+    >
+
+    <h2>Mie Chili Oil</h2>
+
+    <p class="harga">
+      Rp 18.000
+    </p>
+
+    <button onclick="pesan('Mie Chili Oil',18000)">
+      Pesan
+    </button>
+
+  </div>
+
+</div>
+
+<div id="popup" class="popup">
+
+  <div class="popup-content">
+
+    <h2>Form Pemesanan</h2>
+
+    <input
+    type="text"
+    id="nama"
+    placeholder="Nama Pemesan"
+    >
+
+    <select id="lokasi">
+      <option value="">
+        Pilih Lokasi Kampus
+      </option>
+
+      <option>
+        Kampus 1 S. Parman
+      </option>
+
+      <option>
+        Kampus 2 Pascasarjana
+      </option>
+
+      <option>
+        Kampus 3 Handil Bakti
+      </option>
+    </select>
+
+    <textarea
+    id="catatan"
+    placeholder="Catatan tambahan"
+    ></textarea>
+
+    <button onclick="kirimPesanan()">
+      Kirim Pesanan
+    </button>
+
+    <button
+    class="close"
+    onclick="tutupPopup()"
+    >
+      Batal
+    </button>
+
+  </div>
+
 </div>
 
 <script src="app.js"></script>
