@@ -1,25 +1,5 @@
 let keranjang = [];
 
-function tambahKeranjang(menu, harga){
-
-  const itemLama =
-  keranjang.find(item => item.menu === menu);
-
-  if(itemLama){
-
-    itemLama.qty += 1;
-
-  }else{
-
-    keranjang.push({
-      menu: menu,
-      harga: harga,
-      qty: 1
-    });
-
-  }
-}
-
 function renderKeranjang(){
 
   const list =
@@ -100,61 +80,28 @@ function renderKeranjang(){
 
   totalText.innerHTML =
   `Total: Rp ${total}`;
-
 }
 
-function renderKeranjang(){
+function tambahKeranjang(menu, harga){
 
-  const list =
-  document.getElementById("list-keranjang");
+  const itemLama =
+  keranjang.find(item => item.menu === menu);
 
-  const totalText =
-  document.getElementById("total");
+  if(itemLama){
 
-  if(keranjang.length === 0){
+    itemLama.qty += 1;
 
-    list.innerHTML =
-    "Belum ada pesanan";
+  }else{
 
-    totalText.innerHTML =
-    "Total: Rp 0";
+    keranjang.push({
+      menu: menu,
+      harga: harga,
+      qty: 1
+    });
 
-    return;
   }
 
-  let html = "";
-
-  let total = 0;
-
-  keranjang.forEach(item => {
-
-    const subtotal =
-    item.harga * item.qty;
-
-    total += subtotal;
-
-    html += `
-    <div class="item-keranjang">
-
-      <div>
-        ${item.menu}
-        x${item.qty}
-      </div>
-
-      <div>
-        Rp ${subtotal}
-      </div>
-
-    </div>
-    `;
-
-  });
-
-  list.innerHTML = html;
-
-  totalText.innerHTML =
-  `Total: Rp ${total}`;
-
+  renderKeranjang();
 }
 
 function checkout(){
