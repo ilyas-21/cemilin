@@ -1,72 +1,64 @@
-javascript
 let menuDipilih = "";
 let hargaDipilih = 0;
 
-function pesan(menu,harga){
+function pesan(menu, harga) {
 
-menuDipilih = menu;
-hargaDipilih = harga;
+  menuDipilih = menu;
+  hargaDipilih = harga;
 
-document
-.getElementById("popup")
-.style.display = "block";
-
+  document.getElementById("popup").style.display = "block";
 }
 
-function tutupPopup(){
+function tutupPopup() {
 
-document
-.getElementById("popup")
-.style.display = "none";
-
+  document.getElementById("popup").style.display = "none";
 }
 
-async function kirimPesanan(){
+async function kirimPesanan() {
 
-const nama =
-document.getElementById("nama").value;
+  const nama =
+  document.getElementById("nama").value;
 
-const lokasi =
-document.getElementById("lokasi").value;
+  const lokasi =
+  document.getElementById("lokasi").value;
 
-const catatan =
-document.getElementById("catatan").value;
+  const catatan =
+  document.getElementById("catatan").value;
 
-if(!nama || !lokasi){
+  if (!nama || !lokasi) {
 
-alert("Lengkapi data");
+    alert("Lengkapi data terlebih dahulu");
 
-return;
+    return;
+  }
 
-}
+  const kode =
+  "CMN-" + Date.now();
 
-const kode =
-"CMN-" + Date.now();
+  const tanggal =
+  new Date().toLocaleString();
 
-const tanggal =
-new Date().toLocaleString();
+  const data = {
 
-const data = {
+    kode: kode,
+    tanggal: tanggal,
+    nama: nama,
+    lokasi: lokasi,
+    menu: menuDipilih,
+    total: hargaDipilih,
+    catatan: catatan
 
-kode: kode,
-tanggal: tanggal,
-nama: nama,
-lokasi: lokasi,
-menu: menuDipilih,
-total: hargaDipilih,
-catatan: catatan
+  };
 
-};
+  await fetch(
+    "https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec",
+    {
+      method: "POST",
+      body: JSON.stringify(data)
+    }
+  );
 
-await fetch(
-"https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec",
-{
-method:"POST",
-body:JSON.stringify(data)
-}
-);
-
-const pesanWA = `
+  const pesanWA = `
 *PESANAN BARU CEMIL.IN*
 
 Kode:
@@ -88,12 +80,11 @@ Lokasi:
 ${lokasi}
 `;
 
-window.open(
-`https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
-);
+  window.open(
+    `https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
+  );
 
-tutupPopup();
+  tutupPopup();
 
-alert("Pesanan berhasil dibuat");
-
+  alert("Pesanan berhasil dibuat");
 }
