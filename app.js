@@ -66,4 +66,12 @@ window.open(
 `https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
 );
 
+}catch(error){
+
+alert("ERROR: " + error);
+
+console.log(error);
+
+}
+
 }
