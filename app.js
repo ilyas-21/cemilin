@@ -1,20 +1,106 @@
-let menuDipilih = "";
-let hargaDipilih = 0;
+let keranjang = [];
 
-function pesan(menu, harga) {
+function tambahKeranjang(menu, harga){
 
-  menuDipilih = menu;
-  hargaDipilih = harga;
+  const itemLama =
+  keranjang.find(item => item.menu === menu);
 
-  document.getElementById("popup").style.display = "block";
+  if(itemLama){
+
+    itemLama.qty += 1;
+
+  }else{
+
+    keranjang.push({
+      menu: menu,
+      harga: harga,
+      qty: 1
+    });
+
+  }
+
+  renderKeranjang();
+
 }
 
-function tutupPopup() {
+function renderKeranjang(){
 
-  document.getElementById("popup").style.display = "none";
+  const list =
+  document.getElementById("list-keranjang");
+
+  const totalText =
+  document.getElementById("total");
+
+  if(keranjang.length === 0){
+
+    list.innerHTML =
+    "Belum ada pesanan";
+
+    totalText.innerHTML =
+    "Total: Rp 0";
+
+    return;
+  }
+
+  let html = "";
+
+  let total = 0;
+
+  keranjang.forEach(item => {
+
+    const subtotal =
+    item.harga * item.qty;
+
+    total += subtotal;
+
+    html += `
+    <div class="item-keranjang">
+
+      <div>
+        ${item.menu}
+        x${item.qty}
+      </div>
+
+      <div>
+        Rp ${subtotal}
+      </div>
+
+    </div>
+    `;
+
+  });
+
+  list.innerHTML = html;
+
+  totalText.innerHTML =
+  `Total: Rp ${total}`;
+
 }
 
-async function kirimPesanan() {
+function checkout(){
+
+  if(keranjang.length === 0){
+
+    alert("Keranjang masih kosong");
+
+    return;
+  }
+
+  document
+  .getElementById("popup")
+  .style.display = "block";
+
+}
+
+function tutupPopup(){
+
+  document
+  .getElementById("popup")
+  .style.display = "none";
+
+}
+
+async function kirimPesanan(){
 
   const nama =
   document.getElementById("nama").value;
@@ -25,9 +111,9 @@ async function kirimPesanan() {
   const catatan =
   document.getElementById("catatan").value;
 
-  if (!nama || !lokasi) {
+  if(!nama || !lokasi){
 
-    alert("Lengkapi data terlebih dahulu");
+    alert("Lengkapi data");
 
     return;
   }
@@ -38,20 +124,36 @@ async function kirimPesanan() {
   const tanggal =
   new Date().toLocaleString();
 
+  let total = 0;
+
+  let daftarPesanan = "";
+
+  keranjang.forEach(item => {
+
+    const subtotal =
+    item.harga * item.qty;
+
+    total += subtotal;
+
+    daftarPesanan +=
+    `${item.menu} x${item.qty}\n`;
+
+  });
+
   const data = {
 
     kode: kode,
     tanggal: tanggal,
     nama: nama,
     lokasi: lokasi,
-    menu: menuDipilih,
-    total: hargaDipilih,
+    menu: daftarPesanan,
+    total: total,
     catatan: catatan
 
   };
 
   await fetch(
-    "https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec",
+    "URL_APPS_SCRIPT_ANDA",
     {
       method: "POST",
       body: JSON.stringify(data)
@@ -68,23 +170,28 @@ Nama:
 ${nama}
 
 Pesanan:
-${menuDipilih}
+${daftarPesanan}
 
 Catatan:
 ${catatan}
 
 Total:
-Rp ${hargaDipilih}
+Rp ${total}
 
 Lokasi:
 ${lokasi}
 `;
 
   window.open(
-    `https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
+    `https://wa.me/628XXXXXXXXXX?text=${encodeURIComponent(pesanWA)}`
   );
+
+  alert("Pesanan berhasil dibuat");
+
+  keranjang = [];
+
+  renderKeranjang();
 
   tutupPopup();
 
-  alert("Pesanan berhasil dibuat");
 }
