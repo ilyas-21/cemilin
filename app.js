@@ -18,6 +18,7 @@ function tambahKeranjang(menu, harga){
     });
 
   }
+}
 
 function renderKeranjang(){
 
