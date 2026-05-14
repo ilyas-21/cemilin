@@ -59,7 +59,7 @@ catatan: catatan
 };
 
 await fetch(
-"URL_APPS_SCRIPT_ANDA",
+"https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec",
 {
 method:"POST",
 body:JSON.stringify(data)
@@ -89,7 +89,7 @@ ${lokasi}
 `;
 
 window.open(
-`https://wa.me/628XXXXXXXXXX?text=${encodeURIComponent(pesanWA)}`
+`https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
 );
 
 tutupPopup();
