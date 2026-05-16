@@ -238,7 +238,56 @@ ${lokasi}
     `https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
   );
 
-  alert("Pesanan berhasil dibuat");
+const invoiceHTML = `
+
+<hr>
+
+<p>
+<strong>Kode:</strong><br>
+${kode}
+</p>
+
+<p>
+<strong>Tanggal:</strong><br>
+${tanggal}
+</p>
+
+<p>
+<strong>Nama:</strong><br>
+${nama}
+</p>
+
+<p>
+<strong>Pesanan:</strong><br>
+${daftarPesanan.replace(/\n/g,"<br>")}
+</p>
+
+<p>
+<strong>Catatan:</strong><br>
+${catatan || "-"}
+</p>
+
+<p>
+<strong>Total:</strong><br>
+Rp ${total}
+</p>
+
+<p>
+<strong>Lokasi:</strong><br>
+${lokasi}
+</p>
+
+<hr>
+
+`;
+
+document
+.getElementById("invoice-content")
+.innerHTML = invoiceHTML;
+
+document
+.getElementById("popup-invoice")
+.style.display = "block";
 
   keranjang = [];
 
