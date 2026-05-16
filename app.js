@@ -448,7 +448,9 @@ async function loadProduk(){
     ? "habis"
     : ""}">
 
-      <img src="${item.foto}">
+      <img 
+      src="${item.foto}"
+      loading="lazy">
 
       ${badge}
 
