@@ -1,3 +1,6 @@
+const API_URL =
+"https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec";
+
 let keranjang = [];
 let menuSementara = "";
 let hargaSementara = 0;
@@ -382,3 +385,93 @@ function tutupInvoice(){
   .style.display = "none";
 
 }
+
+async function loadProduk(){
+
+  const response =
+  await fetch(
+    API_URL + "?action=produk"
+  );
+
+  const produk =
+  await response.json();
+
+  let html = "";
+
+  produk.forEach(item => {
+
+    const tombol =
+    item.stok == "habis"
+
+    ?
+
+    `
+    <button
+    disabled
+    class="btn-habis">
+      STOK HABIS
+    </button>
+    `
+
+    :
+
+    `
+    <button
+    onclick="
+    tambahKeranjang(
+    '${item.nama}',
+    ${item.harga}
+    )">
+      Tambah ke Keranjang
+    </button>
+    `;
+
+    const badge =
+    item.stok == "habis"
+
+    ?
+
+    `
+    <div class="badge-habis">
+      STOK HABIS
+    </div>
+    `
+
+    :
+
+    "";
+
+    html += `
+
+    <div class="card
+    ${item.stok == "habis"
+    ? "habis"
+    : ""}">
+
+      <img src="${item.foto}">
+
+      ${badge}
+
+      <h2>
+        ${item.nama}
+      </h2>
+
+      <p class="harga">
+        Rp ${item.harga}
+      </p>
+
+      ${tombol}
+
+    </div>
+
+    `;
+
+  });
+
+  document
+  .getElementById("daftar-menu")
+  .innerHTML = html;
+
+}
+
+loadProduk();
