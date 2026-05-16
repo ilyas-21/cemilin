@@ -474,6 +474,10 @@ async function loadProduk(){
   .getElementById("daftar-menu")
   .innerHTML = html;
 
+  document
+  .getElementById("loading")
+  .style.display = "none";
+
 }
 
 loadProduk();
