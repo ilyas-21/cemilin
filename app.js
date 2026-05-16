@@ -325,3 +325,11 @@ function simpanTopping(){
   document.getElementById("manis").checked = false;
 
 }
+
+function tutupInvoice(){
+
+  document
+  .getElementById("popup-invoice")
+  .style.display = "none";
+
+}
