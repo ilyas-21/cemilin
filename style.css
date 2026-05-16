@@ -213,3 +213,14 @@ textarea{
   filter:grayscale(70%);
   opacity:0.7;
 }
+
+#invoice-content{
+  text-align:left;
+  line-height:1.8;
+}
+
+#invoice-content hr{
+  border:none;
+  border-top:1px dashed #999;
+  margin:15px 0;
+}
