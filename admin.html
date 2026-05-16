@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+  name="viewport"
+  content="width=device-width,
+  initial-scale=1.0">
+
+  <title>
+    Admin Cemilin
+  </title>
+
+  <link
+  rel="stylesheet"
+  href="style.css">
+
+</head>
+
+<body>
+
+  <header>
+
+    <h1>
+      Dashboard Admin
+    </h1>
+
+  </header>
+
+  <div class="container">
+
+    <div class="admin-box">
+
+      <h2>
+        Total Pendapatan
+      </h2>
+
+      <h1 id="pendapatan">
+        Rp 0
+      </h1>
+
+    </div>
+
+    <div class="admin-box">
+
+      <h2>
+        Total Pesanan
+      </h2>
+
+      <h1 id="jumlah-pesanan">
+        0
+      </h1>
+
+    </div>
+
+    <h2>
+      Pesanan Terbaru
+    </h2>
+
+    <div id="list-pesanan">
+
+    </div>
+
+  </div>
+
+  <script>
+
+    const API_URL =
+    "https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec";
+
+    async function loadPesanan(){
+
+      const response =
+      await fetch(
+        API_URL + "?action=pesanan"
+      );
+
+      const data =
+      await response.json();
+
+      let total = 0;
+
+      let html = "";
+
+      data.reverse().forEach(item => {
+
+        total += item.total;
+
+        html += `
+
+        <div class="item-keranjang">
+
+          <div>
+
+            <strong>
+              ${item.nama}
+            </strong>
+
+            <br>
+
+            ${item.menu}
+
+            <br><br>
+
+            ${item.lokasi}
+
+          </div>
+
+          <div>
+
+            Rp ${item.total}
+
+          </div>
+
+        </div>
+
+        `;
+
+      });
+
+      document
+      .getElementById("pendapatan")
+      .innerHTML =
+      "Rp " + total;
+
+      document
+      .getElementById("jumlah-pesanan")
+      .innerHTML =
+      data.length;
+
+      document
+      .getElementById("list-pesanan")
+      .innerHTML =
+      html;
+
+    }
+
+    loadPesanan();
+
+  </script>
+
+</body>
+
+</html>
