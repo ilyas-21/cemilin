@@ -224,3 +224,11 @@ textarea{
   border-top:1px dashed #999;
   margin:15px 0;
 }
+
+#loading{
+  text-align:center;
+  padding:40px;
+  font-size:20px;
+  font-weight:bold;
+  color:green;
+}
