@@ -388,95 +388,105 @@ function tutupInvoice(){
 
 async function loadProduk(){
 
-  const response =
-  await fetch(
-    API_URL + "?action=produk"
-  );
+  try{
 
-  const produk =
-  await response.json();
+    const response =
+    await fetch(
+      API_URL + "?action=produk"
+    );
 
-  let html = "";
+    const produk =
+    await response.json();
 
-  produk.forEach(item => {
+    let html = "";
 
-    const tombol =
-    item.stok == "habis"
+    produk.forEach(item => {
 
-    ?
+      const tombol =
+      item.stok == "habis"
 
-    `
-    <button
-    disabled
-    class="btn-habis">
-      STOK HABIS
-    </button>
-    `
+      ?
 
-    :
+      `
+      <button
+      disabled
+      class="btn-habis">
+        STOK HABIS
+      </button>
+      `
 
-    `
-    <button
-    onclick="
-    tambahKeranjang(
-    '${item.nama}',
-    ${item.harga}
-    )">
-      Tambah ke Keranjang
-    </button>
-    `;
+      :
 
-    const badge =
-    item.stok == "habis"
+      `
+      <button
+      onclick="
+      tambahKeranjang(
+      '${item.nama}',
+      ${item.harga}
+      )">
+        Tambah ke Keranjang
+      </button>
+      `;
 
-    ?
+      const badge =
+      item.stok == "habis"
 
-    `
-    <div class="badge-habis">
-      STOK HABIS
-    </div>
-    `
+      ?
 
-    :
+      `
+      <div class="badge-habis">
+        STOK HABIS
+      </div>
+      `
 
-    "";
+      :
 
-    html += `
+      "";
 
-    <div class="card
-    ${item.stok == "habis"
-    ? "habis"
-    : ""}">
+      html += `
 
-      <img 
-      src="${item.foto}"
-      loading="lazy">
+      <div class="card
+      ${item.stok == "habis"
+      ? "habis"
+      : ""}">
 
-      ${badge}
+        <img
+        src="${item.foto}"
+        loading="lazy">
 
-      <h2>
-        ${item.nama}
-      </h2>
+        ${badge}
 
-      <p class="harga">
-        Rp ${item.harga}
-      </p>
+        <h2>
+          ${item.nama}
+        </h2>
 
-      ${tombol}
+        <p class="harga">
+          Rp ${item.harga}
+        </p>
 
-    </div>
+        ${tombol}
 
-    `;
+      </div>
 
-  });
+      `;
 
-  document
-  .getElementById("daftar-menu")
-  .innerHTML = html;
+    });
 
-  document
-  .getElementById("loading")
-  .style.display = "none";
+    document
+    .getElementById("daftar-menu")
+    .innerHTML = html;
+
+  }catch(error){
+
+    console.log(error);
+
+  }finally{
+
+    document
+    .getElementById("loading")
+    .style.display = "none";
+
+  }
 
 }
 
