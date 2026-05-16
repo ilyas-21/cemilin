@@ -1,4 +1,7 @@
 let keranjang = [];
+let menuSementara = "";
+let hargaSementara = 0;
+let toppingDipilih = [];
 
 function renderKeranjang(){
 
