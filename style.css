@@ -131,3 +131,53 @@ textarea{
   border-radius:8px;
   cursor:pointer;
 }
+
+.topping-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 0;
+  border-bottom:1px solid #eee;
+}
+
+.checkbox-container{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  cursor:pointer;
+  position:relative;
+  font-size:16px;
+}
+
+.checkbox-container input{
+  display:none;
+}
+
+.checkmark{
+  width:22px;
+  height:22px;
+  border:2px solid green;
+  border-radius:6px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:0.2s;
+}
+
+.checkbox-container input:checked
++ .checkmark{
+  background:green;
+}
+
+.checkbox-container input:checked
++ .checkmark::after{
+  content:"✓";
+  color:white;
+  font-size:14px;
+  font-weight:bold;
+}
+
+.harga-topping{
+  color:green;
+  font-weight:bold;
+}
