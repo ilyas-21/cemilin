@@ -385,3 +385,9 @@ textarea{
   }
 
 }
+
+#popup-invoice{
+
+  overflow-y:auto;
+
+}
