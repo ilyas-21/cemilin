@@ -75,6 +75,12 @@ button{
   border-radius:15px;
 }
 
+#popup-invoice{
+
+  overflow-y:auto;
+
+}
+
 .keranjang{
   background:white;
   margin:20px;
@@ -383,11 +389,5 @@ textarea{
   to{
     transform:rotate(360deg);
   }
-
-}
-
-#popup-invoice{
-
-  overflow-y:auto;
 
 }
