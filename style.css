@@ -115,6 +115,8 @@ button{
 }
 
 #popup-invoice .popup-content{
+  background:white;
+  max-width:550px;
   max-height:90vh;
   overflow-y:auto;
 }
