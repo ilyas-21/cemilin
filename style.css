@@ -480,3 +480,99 @@ textarea{
   }
 
 }
+
+.invoice-header{
+
+  text-align:center;
+
+  margin-bottom:20px;
+
+}
+
+.invoice-header h2{
+
+  margin:0;
+
+  color:#66b2b2;
+
+}
+
+.invoice-header p{
+
+  margin-top:5px;
+
+  color:#666;
+
+  font-size:14px;
+
+}
+
+.invoice-table{
+
+  width:100%;
+
+  border-collapse:collapse;
+
+}
+
+.invoice-table td{
+
+  padding:5px 0;
+
+  vertical-align:top;
+
+}
+
+.invoice-item{
+
+  display:flex;
+
+  gap:10px;
+
+  margin-bottom:15px;
+
+  padding-bottom:10px;
+
+  border-bottom:1px dashed #ddd;
+
+}
+
+.invoice-no{
+
+  width:30px;
+
+  font-weight:bold;
+
+}
+
+.invoice-menu{
+
+  flex:1;
+
+  line-height:1.6;
+
+}
+
+.invoice-harga{
+
+  font-weight:bold;
+
+  text-align:right;
+
+  white-space:nowrap;
+
+}
+
+.invoice-total{
+
+  text-align:center;
+
+  font-size:24px;
+
+  font-weight:bold;
+
+  color:#66b2b2;
+
+  margin-top:20px;
+
+}
