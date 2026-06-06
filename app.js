@@ -491,3 +491,17 @@ async function loadProduk(){
 }
 
 loadProduk();
+
+function simpanDataPemesan(){
+
+  localStorage.setItem(
+    "cemilin_nama",
+    document.getElementById("nama").value
+  );
+
+  localStorage.setItem(
+    "cemilin_wa",
+    document.getElementById("wa").value
+  );
+
+}
