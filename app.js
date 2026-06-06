@@ -559,7 +559,7 @@ async function loadStatistik(){
 
   const response =
     await fetch(
-      SCRIPT_URL +
+      API_URL +
       "?action=statistik"
     );
 
