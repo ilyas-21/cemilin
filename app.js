@@ -540,5 +540,41 @@ function loadDataPemesan(){
 
 }
 
+async function loadStatistik(){
+
+  const response =
+    await fetch(
+      SCRIPT_URL +
+      "?action=statistik"
+    );
+
+  const data =
+    await response.json();
+
+  document
+    .getElementById("jumlahPesanan")
+    .innerText =
+      data.jumlahPesanan;
+
+  document
+    .getElementById("omzetHariIni")
+    .innerText =
+      "Rp " +
+      Number(
+        data.omzetHariIni
+      ).toLocaleString("id-ID");
+
+  document
+    .getElementById("menuTerlaris")
+    .innerText =
+      data.menuTerlaris;
+
+  document
+    .getElementById("totalPesanan")
+    .innerText =
+      data.totalPesanan;
+
+}
+
 loadProduk();
 loadDataPemesan();
