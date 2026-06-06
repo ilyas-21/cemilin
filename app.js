@@ -156,6 +156,17 @@ function hapusItem(index){
 }
 
 async function kirimPesanan(){
+  const loadingCheckout =
+  document.getElementById(
+    "loading-checkout"
+  );
+  
+  if(loadingCheckout){
+  
+    loadingCheckout.style.display =
+    "flex";
+  
+  }
 
   const nama =
   document.getElementById("nama").value;
