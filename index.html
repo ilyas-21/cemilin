@@ -149,34 +149,30 @@
 
     <h2>Form Pemesanan</h2>
 
+    <label>Nama Pemesan</label>
     <input
-    type="text"
-    id="nama"
-    placeholder="Nama Pemesan"
+      type="text"
+      id="nama"
+      placeholder="Nama Lengkap"
     >
-
+    
+    <label>Nomor WhatsApp</label>
+    <input
+      type="tel"
+      id="wa"
+      placeholder="08xxxxxxxxxx"
+    >
+    
+    <label>Lokasi Pengantaran</label>
     <select id="lokasi">
-      <option value="">
-        Pilih Lokasi Kampus
-      </option>
-
-      <option>
-        Kampus 1 S. Parman
-      </option>
-
-      <option>
-        Kampus 2 Pascasarjana
-      </option>
-
-      <option>
-        Kampus 3 Handil Bakti
-      </option>
+      <option value="">Pilih Lokasi</option>
+      <option>Kampus 1 S. Parman</option>
+      <option>Kampus 2 Pascasarjana</option>
+      <option>Kampus 3 Handil Bakti</option>
     </select>
-
-    <textarea
-    id="catatan"
-    placeholder="Catatan tambahan"
-    ></textarea>
+    
+    <label>Catatan</label>
+    <textarea id="catatan"></textarea>
 
     <button onclick="kirimPesanan()">
       Kirim Pesanan
