@@ -455,3 +455,28 @@ textarea{
   }
 
 }
+
+@media print {
+
+  body *{
+    visibility:hidden;
+  }
+
+  #popup-invoice,
+  #popup-invoice *{
+    visibility:visible;
+  }
+
+  #popup-invoice{
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    background:white;
+  }
+
+  button{
+    display:none;
+  }
+
+}
