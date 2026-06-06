@@ -160,13 +160,16 @@ async function kirimPesanan(){
   const nama =
   document.getElementById("nama").value;
 
+  const wa =
+  document.getElementById("wa").value;
+
   const lokasi =
   document.getElementById("lokasi").value;
 
   const catatan =
   document.getElementById("catatan").value;
 
-  if(!nama || !lokasi){
+  if(!nama || !wa || !lokasi){
 
     alert("Lengkapi data");
 
