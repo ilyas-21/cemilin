@@ -614,5 +614,47 @@ async function loadStatistik(){
 
 }
 
+function buatDetailPesanan(){
+
+  let html = "";
+
+  keranjang.forEach((item,index)=>{
+
+    html += `
+
+    <div class="invoice-item">
+
+      <div class="invoice-no">
+        ${index + 1}
+      </div>
+
+      <div class="invoice-menu">
+
+        <b>${item.menu}</b>
+
+        <br>
+
+        Qty :
+        ${item.qty}
+
+      </div>
+
+      <div class="invoice-harga">
+
+        Rp ${(item.harga * item.qty)
+        .toLocaleString("id-ID")}
+
+      </div>
+
+    </div>
+
+    `;
+
+  });
+
+  return html;
+
+}
+
 loadProduk();
 loadDataPemesan();
