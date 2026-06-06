@@ -220,32 +220,33 @@ async function kirimPesanan(){
     }
   );
 
-  const pesanWA = `
-*PESANAN BARU CEMIL.IN*
-
-Kode:
-${kode}
-
-Nama:
-${nama}
-
-Pesanan:
-${daftarPesanan}
-
-Catatan:
-${catatan}
-
-Total:
-Rp ${total}
-
-Lokasi:
-${lokasi}
-`;
-
-  window.open(
-    `https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
-  );
-
+  /*const pesanWA = `
+  *PESANAN BARU CEMIL.IN*
+  
+  Kode:
+  ${kode}
+  
+  Nama:
+  ${nama}
+  
+  Pesanan:
+  ${daftarPesanan}
+  
+  Catatan:
+  ${catatan}
+  
+  Total:
+  Rp ${total}
+  
+  Lokasi:
+  ${lokasi}
+  `;
+  
+    window.open(
+      `https://wa.me/62895338946122?text=${encodeURIComponent(pesanWA)}`
+    );
+  */
+  
 const invoiceHTML = `
 
 <hr>
