@@ -203,6 +203,7 @@ async function kirimPesanan(){
     kode: kode,
     tanggal: tanggal,
     nama: nama,
+    wa: wa,
     lokasi: lokasi,
     menu: daftarPesanan,
     total: total,
@@ -210,6 +211,7 @@ async function kirimPesanan(){
 
   };
 
+  simpanDataPemesan();
   await fetch(
     "https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec",
     {
