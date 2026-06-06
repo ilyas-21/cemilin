@@ -69,19 +69,30 @@ button{
 }
 
 .popup-content{
-  position:relative;
-  top:20px;
+
+  background:#fff;
 
   width:95%;
+
   max-width:500px;
+
+  margin:20px auto;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  box-shadow:
+  0 10px 30px rgba(0,0,0,.2);
 
   max-height:90vh;
 
   overflow-y:auto;
 
-  margin:auto;
+  overflow-x:hidden;
 
-  border-radius:20px;
+  position:relative;
+
 }
 
 *{
@@ -97,6 +108,10 @@ button{
 .popup-content button{
   width:100%;
   margin:10px 0;
+}
+
+.popup-content *{
+  max-width:100%;
 }
 
 #popup-invoice .popup-content{
@@ -411,6 +426,30 @@ textarea{
 
   to{
     transform:rotate(360deg);
+  }
+
+}
+
+@media(max-width:600px){
+
+  .popup-content{
+
+    width:95%;
+
+    margin:10px auto;
+
+    padding:15px;
+
+    border-radius:15px;
+
+  }
+
+  #invoice-content{
+
+    font-size:15px;
+
+    word-wrap:break-word;
+
   }
 
 }
