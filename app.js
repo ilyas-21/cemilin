@@ -490,8 +490,6 @@ async function loadProduk(){
 
 }
 
-loadProduk();
-
 function simpanDataPemesan(){
 
   localStorage.setItem(
@@ -535,3 +533,6 @@ function loadDataPemesan(){
   }
 
 }
+
+loadProduk();
+loadDataPemesan();
