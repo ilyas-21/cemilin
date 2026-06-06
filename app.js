@@ -302,6 +302,10 @@ document
 .getElementById("popup-invoice")
 .style.display = "block";
 
+document
+.getElementById("loading-checkout")
+.style.display = "none";
+
   keranjang = [];
 
   renderKeranjang();
