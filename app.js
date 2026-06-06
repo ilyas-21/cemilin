@@ -260,44 +260,67 @@ async function kirimPesanan(){
   
 const invoiceHTML = `
 
+<div class="invoice-header">
+
+  <h2>CEMIL.IN</h2>
+
+  <p>
+    Cemilan Favorit Warga UM Banjarmasin
+  </p>
+
+</div>
+
+<hr>
+
+<table class="invoice-table">
+
+<tr>
+<td>Kode</td>
+<td>: ${kode}</td>
+</tr>
+
+<tr>
+<td>Tanggal</td>
+<td>: ${tanggal}</td>
+</tr>
+
+<tr>
+<td>Nama</td>
+<td>: ${nama}</td>
+</tr>
+
+<tr>
+<td>WA</td>
+<td>: ${wa}</td>
+</tr>
+
+<tr>
+<td>Lokasi</td>
+<td>: ${lokasi}</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h3>Pesanan</h3>
+
+${buatDetailPesanan()}
+
 <hr>
 
 <p>
-<strong>Kode:</strong><br>
-${kode}
-</p>
-
-<p>
-<strong>Tanggal:</strong><br>
-${tanggal}
-</p>
-
-<p>
-<strong>Nama:</strong><br>
-${nama}
-</p>
-
-<p>
-<strong>Pesanan:</strong><br>
-${daftarPesanan.replace(/\n/g,"<br>")}
-</p>
-
-<p>
-<strong>Catatan:</strong><br>
+<b>Catatan:</b><br>
 ${catatan || "-"}
 </p>
 
-<p>
-<strong>Total:</strong><br>
-Rp ${total}
-</p>
+<div class="invoice-total">
 
-<p>
-<strong>Lokasi:</strong><br>
-${lokasi}
-</p>
+TOTAL<br>
 
-<hr>
+Rp ${total.toLocaleString("id-ID")}
+
+</div>
 
 `;
 
