@@ -505,3 +505,33 @@ function simpanDataPemesan(){
   );
 
 }
+
+function loadDataPemesan(){
+
+  const nama =
+  localStorage.getItem(
+    "cemilin_nama"
+  );
+
+  const wa =
+  localStorage.getItem(
+    "cemilin_wa"
+  );
+
+  if(nama){
+
+    document
+    .getElementById("nama")
+    .value = nama;
+
+  }
+
+  if(wa){
+
+    document
+    .getElementById("wa")
+    .value = wa;
+
+  }
+
+}
