@@ -2,8 +2,7 @@ const API_URL =
 "https://script.google.com/macros/s/AKfycbyq2CFjJsTzA9xi_bWYbtgHJxs6OmOxy3S8cC6q20Ohb7PtuYDyMYEnzPKfmPRV2Nni/exec";
 
 let keranjang = [];
-let menuSementara = "";
-let hargaSementara = 0;
+let produkSementara = null;
 let toppingDipilih = [];
 
 function renderKeranjang(){
@@ -88,11 +87,43 @@ function renderKeranjang(){
   `Total: Rp ${total}`;
 }
 
-function tambahKeranjang(menu, harga){
+function tambahKeranjang(produk){
 
-  menuSementara = menu;
+  produkSementara = produk;
 
-  hargaSementara = harga;
+  if(
+    !produk.varian ||
+    produk.varian.length === 0
+  ){
+
+    const itemLama =
+    keranjang.find(
+      item => item.menu === produk.nama
+    );
+
+    if(itemLama){
+
+      itemLama.qty++;
+
+    }else{
+
+      keranjang.push({
+
+        menu: produk.nama,
+
+        harga: produk.harga,
+
+        qty:1
+
+      });
+
+    }
+
+    renderKeranjang();
+
+    return;
+
+  }
 
   document
   .getElementById("popup-topping")
@@ -441,10 +472,11 @@ async function loadProduk(){
 
     const produk =
     await response.json();
+    window.produkData = produk;
 
     let html = "";
 
-    produk.forEach(item => {
+    produk.forEach((item,index) => {
 
       const tombol =
       item.stok == "habis"
@@ -463,11 +495,7 @@ async function loadProduk(){
 
       `
       <button
-      onclick="
-      tambahKeranjang(
-      '${item.nama}',
-      ${item.harga}
-      )">
+      onclick="tambahKeranjang(produkData[${index}])">
         Tambah ke Keranjang
       </button>
       `;
