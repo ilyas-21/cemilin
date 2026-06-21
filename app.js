@@ -125,9 +125,58 @@ function tambahKeranjang(produk){
 
   }
 
+  buatPopupVarian(produk);
+
   document
   .getElementById("popup-topping")
   .style.display = "block";
+
+}
+
+function buatPopupVarian(produk){
+
+  const container =
+  document.getElementById("daftar-varian");
+
+  container.innerHTML = "";
+
+  produk.varian.forEach((grup, i)=>{
+
+    let html =
+    `<h3>${grup.nama}</h3>`;
+
+    grup.opsi.forEach((opsi,j)=>{
+
+      const type =
+      grup.tipe=="multiple"
+      ? "checkbox"
+      : "radio";
+
+      html += `
+
+      <label class="checkbox-container">
+
+        <input
+          type="${type}"
+          name="varian${i}"
+          value="${j}">
+
+        <span>
+          ${opsi.nama}
+          (+Rp ${opsi.tambahan})
+        </span>
+
+      </label>
+
+      <br>
+
+      `;
+
+    });
+
+    container.innerHTML += html;
+
+  });
 
 }
 
@@ -385,59 +434,79 @@ function tutupPopupTopping(){
 
 function simpanTopping(){
 
-  toppingDipilih = [];
+  let nama =
+  produkSementara.nama;
 
-  let tambahanHarga = 0;
+  let harga =
+  Number(produkSementara.harga);
 
-  if(document.getElementById("telur").checked){
+  let detail = [];
 
-    toppingDipilih.push("Extra Telur");
+  produkSementara.varian.forEach((grup,i)=>{
 
-    tambahanHarga += 3000;
+    if(grup.tipe=="single"){
 
-  }
+      const pilih =
+      document.querySelector(
+        `input[name="varian${i}"]:checked`
+      );
 
-  if(document.getElementById("keju").checked){
+      if(pilih){
 
-    toppingDipilih.push("Extra Keju");
+        const opsi =
+        grup.opsi[pilih.value];
 
-    tambahanHarga += 5000;
+        detail.push(opsi.nama);
 
-  }
+        harga += Number(opsi.tambahan);
 
-  if(document.getElementById("pedas").checked){
+      }
 
-    toppingDipilih.push("Saos Pedas");
+    }else{
 
-  }
+      document
+      .querySelectorAll(
+        `input[name="varian${i}"]:checked`
+      )
+      .forEach(pilih=>{
 
-  if(document.getElementById("manis").checked){
+        const opsi =
+        grup.opsi[pilih.value];
 
-    toppingDipilih.push("Saos Manis");
+        detail.push(opsi.nama);
 
-  }
+        harga += Number(opsi.tambahan);
 
-  const namaMenuGabungan =
-  menuSementara +
-  (toppingDipilih.length > 0
-  ? " (" + toppingDipilih.join(", ") + ")"
-  : "");
+      });
 
-  const itemLama =
+    }
+
+  });
+
+  const namaMenu =
+  detail.length
+  ? `${nama} (${detail.join(", ")})`
+  : nama;
+
+  const item =
   keranjang.find(
-    item => item.menu === namaMenuGabungan
+    x=>x.menu==namaMenu
   );
 
-  if(itemLama){
+  if(item){
 
-    itemLama.qty += 1;
+    item.qty++;
 
   }else{
 
     keranjang.push({
-      menu: namaMenuGabungan,
-      harga: hargaSementara + tambahanHarga,
-      qty: 1
+
+      menu:namaMenu,
+
+      harga:harga,
+
+      qty:1
+
     });
 
   }
@@ -445,11 +514,6 @@ function simpanTopping(){
   renderKeranjang();
 
   tutupPopupTopping();
-
-  document.getElementById("telur").checked = false;
-  document.getElementById("keju").checked = false;
-  document.getElementById("pedas").checked = false;
-  document.getElementById("manis").checked = false;
 
 }
 
