@@ -198,7 +198,8 @@ textarea{
 }
 
 .checkbox-container input{
-  display:none;
+    display:inline-block;
+    margin-right:10px;
 }
 
 .checkmark{
