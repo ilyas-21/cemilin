@@ -134,6 +134,7 @@ function tambahKeranjang(produk){
 }
 
 function buatPopupVarian(produk){
+  console.log(produk.varian);
 
   const container =
   document.getElementById("daftar-varian");
