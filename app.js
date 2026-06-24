@@ -134,22 +134,29 @@ function tambahKeranjang(produk){
 }
 
 function buatPopupVarian(produk){
-  console.log(produk.varian);
 
   const container =
   document.getElementById("daftar-varian");
 
   container.innerHTML = "";
 
-  produk.varian.forEach((grup, i)=>{
+  produk.varian.forEach((grup,i)=>{
 
-    let html =
-    `<h3>${grup.nama}</h3>`;
+    let html = `
+
+    <div class="grup-varian">
+
+      <h3>
+        ${grup.nama_varian}
+        ${grup.wajib ? "<span style='color:red'>*</span>" : ""}
+      </h3>
+
+    `;
 
     grup.opsi.forEach((opsi,j)=>{
 
       const type =
-      grup.tipe=="multiple"
+      grup.jenis_pilihan === "multiple"
       ? "checkbox"
       : "radio";
 
@@ -163,17 +170,24 @@ function buatPopupVarian(produk){
           value="${j}">
 
         <span>
+
           ${opsi.nama}
-          (+Rp ${opsi.tambahan})
+
+          ${
+            Number(opsi.tambahan) > 0
+            ? `( +Rp ${Number(opsi.tambahan).toLocaleString("id-ID")} )`
+            : ""
+          }
+
         </span>
 
       </label>
 
-      <br>
-
       `;
 
     });
+
+    html += "</div>";
 
     container.innerHTML += html;
 
@@ -443,14 +457,28 @@ function simpanTopping(){
 
   let detail = [];
 
-  produkSementara.varian.forEach((grup,i)=>{
+  for(let i=0;i<produkSementara.varian.length;i++){
 
-    if(grup.tipe=="single"){
+    const grup =
+    produkSementara.varian[i];
+
+    if(grup.jenis_pilihan==="single"){
 
       const pilih =
       document.querySelector(
-        `input[name="varian${i}"]:checked`
+      `input[name="varian${i}"]:checked`
       );
+
+      if(grup.wajib && !pilih){
+
+        alert(
+        "Silakan pilih " +
+        grup.nama_varian
+        );
+
+        return;
+
+      }
 
       if(pilih){
 
@@ -459,30 +487,33 @@ function simpanTopping(){
 
         detail.push(opsi.nama);
 
-        harga += Number(opsi.tambahan);
+        harga +=
+        Number(opsi.tambahan);
 
       }
 
     }else{
 
-      document
-      .querySelectorAll(
-        `input[name="varian${i}"]:checked`
-      )
-      .forEach(pilih=>{
+      const semua =
+      document.querySelectorAll(
+      `input[name="varian${i}"]:checked`
+      );
+
+      semua.forEach(pilih=>{
 
         const opsi =
         grup.opsi[pilih.value];
 
         detail.push(opsi.nama);
 
-        harga += Number(opsi.tambahan);
+        harga +=
+        Number(opsi.tambahan);
 
       });
 
     }
 
-  });
+  }
 
   const namaMenu =
   detail.length
@@ -491,7 +522,7 @@ function simpanTopping(){
 
   const item =
   keranjang.find(
-    x=>x.menu==namaMenu
+  x=>x.menu===namaMenu
   );
 
   if(item){
