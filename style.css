@@ -81,6 +81,7 @@ button:active{
   z-index:9999;
   overflow-y:auto;
   overflow-x:hidden;
+  animation:fadeIn .25s ease;
 }
 
 .popup-content{
@@ -91,12 +92,51 @@ button:active{
   padding:20px;
   border-radius:20px;
   animation:popupShow .28s ease;
-  box-shadow:
-  0 10px 30px rgba(0,0,0,.2);
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
   max-height:90vh;
   overflow-y:auto;
   overflow-x:hidden;
   position:relative;
+}
+
+.popup.closing{
+  animation:fadeOut .25s ease forwards;
+}
+
+.popup.closing .popup-content{
+  animation:popupHide .25s ease forwards;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+@keyframes fadeOut{
+  from{opacity:1;}
+  to{opacity:0;}
+}
+
+@keyframes popupShow{
+  from{
+    opacity:0;
+    transform:translateY(25px) scale(.96);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+}
+
+@keyframes popupHide{
+  from{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  to{
+    opacity:0;
+    transform:translateY(25px) scale(.96);
+  }
 }
 
 *{
@@ -138,15 +178,16 @@ button:active{
   padding:10px 0;
   border-bottom:1px solid #eee;
   animation:itemMasuk .35s ease;
-  @keyframes itemMasuk{
-    from{
-        opacity:0;
-        transform:translateX(30px);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
+}
+
+@keyframes itemMasuk{
+  from{
+    opacity:0;
+    transform:translateX(30px);
+  }
+  to{
+    opacity:1;
+    transform:translateX(0);
   }
 }
 
