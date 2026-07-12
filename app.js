@@ -73,6 +73,7 @@ function renderKeranjang(){
   list.innerHTML = html;
   totalText.innerHTML =
   `Total: Rp ${total}`;
+  updateCartBadge();
 }
 
 function tambahKeranjang(produk){
