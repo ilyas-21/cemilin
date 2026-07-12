@@ -617,3 +617,23 @@ textarea{
   70%{transform:scale(.9);}
   100%{transform:scale(1);}
 }
+
+#toast{
+  position:fixed;
+  bottom:100px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#333;
+  color:white;
+  padding:14px 22px;
+  border-radius:30px;
+  opacity:0;
+  pointer-events:none;
+  transition:.35s;
+  z-index:999999;
+}
+
+#toast.show{
+  opacity:1;
+  bottom:120px;
+}
