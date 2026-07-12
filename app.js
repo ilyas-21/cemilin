@@ -616,5 +616,36 @@ function buatDetailPesanan(){
   return html;
 }
 
+function updateCartBadge(){
+  const badge =
+    document.getElementById("cart-badge");
+  let jumlah=0;
+  keranjang.forEach(item=>{
+    jumlah+=item.qty;
+  });
+  badge.innerText=jumlah;
+  badge.classList.remove("bounce");
+  void badge.offsetWidth;
+  badge.classList.add("bounce");
+}
+
+function scrollKeranjang(){
+  document
+  .querySelector(".keranjang")
+  .scrollIntoView({
+    behavior:"smooth"
+  });
+}
+
+function toast(teks){
+  const t=
+    document.getElementById("toast");
+  t.innerHTML="✔ "+teks;
+  t.classList.add("show");
+  setTimeout(()=>{
+    t.classList.remove("show");
+  },2000);
+}
+
 loadProduk();
 loadDataPemesan();
