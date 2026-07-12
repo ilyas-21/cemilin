@@ -566,3 +566,54 @@ textarea{
     transform:translateY(0) scale(1);
   }
 }
+
+#floating-cart{
+  position:fixed;
+  right:22px;
+  bottom:25px;
+  width:65px;
+  height:65px;
+  background:#66b2b2;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  font-size:30px;
+  cursor:pointer;
+  box-shadow:0 8px 25px rgba(0,0,0,.25);
+  z-index:99999;
+  transition:.25s;
+}
+
+#floating-cart:hover{
+  transform:scale(1.08);
+}
+
+#cart-badge{
+  position:absolute;
+  top:-5px;
+  right:-5px;
+  background:red;
+  color:white;
+  width:25px;
+  height:25px;
+  border-radius:50%;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:13px;
+  font-weight:bold;
+  animation:none;
+}
+
+.bounce{
+  animation:bounce .45s;
+}
+
+@keyframes bounce{
+  0%{transform:scale(1);}
+  40%{transform:scale(1.35);}
+  70%{transform:scale(.9);}
+  100%{transform:scale(1);}
+}
