@@ -15,8 +15,8 @@ function renderKeranjang(){
     "Belum ada pesanan";
     totalText.innerHTML =
     "Total: Rp 0";
-    return;
     updateCartBadge();
+    return;
   }
 
   let html = "";
@@ -622,12 +622,18 @@ function buatDetailPesanan(){
 
 function updateCartBadge(){
   const badge =
-    document.getElementById("cart-badge");
-  let jumlah=0;
+  document.getElementById("cart-badge");
+  if(!badge) return;
+  let jumlah = 0;
   keranjang.forEach(item=>{
-    jumlah+=item.qty;
+    jumlah += Number(item.qty);
   });
-  badge.innerText=jumlah;
+  badge.innerText = jumlah;
+  if(jumlah==0){
+    badge.style.display="none";
+  }else{
+    badge.style.display="flex";
+  }
   badge.classList.remove("bounce");
   void badge.offsetWidth;
   badge.classList.add("bounce");
@@ -653,3 +659,4 @@ function toast(teks){
 
 loadProduk();
 loadDataPemesan();
+updateCartBadge();
