@@ -16,6 +16,7 @@ function renderKeranjang(){
     totalText.innerHTML =
     "Total: Rp 0";
     return;
+    updateCartBadge();
   }
 
   let html = "";
@@ -94,6 +95,7 @@ function tambahKeranjang(produk){
       });
     }
     renderKeranjang();
+    toast(produk.nama + " ditambahkan");
     return;
   }
 
@@ -420,6 +422,7 @@ function simpanTopping(){
     });
   }
   renderKeranjang();
+  toast(nama + " ditambahkan");
   tutupPopupTopping();
 }
 
